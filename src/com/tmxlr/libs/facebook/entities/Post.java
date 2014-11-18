@@ -56,6 +56,7 @@ public class Post extends Entity {
 
 	private Integer likeCount = 0;
 	private Boolean userLikes = false;
+	private FObject object;
 
 	@Override
 	public String getId() {
@@ -200,6 +201,14 @@ public class Post extends Entity {
 
 	public void setUserLikes(Boolean userLikes) {
 		this.userLikes = userLikes;
+	}
+
+	public FObject getObject() {
+		return object;
+	}
+
+	public void setObject(FObject object) {
+		this.object = object;
 	}
 
 }

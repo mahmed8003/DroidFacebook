@@ -12,6 +12,7 @@ import com.tmxlr.libs.facebook.actions.DislikeAction;
 import com.tmxlr.libs.facebook.actions.GetAppAccessTokenAction;
 import com.tmxlr.libs.facebook.actions.GetCommentAction;
 import com.tmxlr.libs.facebook.actions.GetCommentsAction;
+import com.tmxlr.libs.facebook.actions.GetObjectAction;
 import com.tmxlr.libs.facebook.actions.GetPostsAction;
 import com.tmxlr.libs.facebook.actions.GetProfileAction;
 import com.tmxlr.libs.facebook.actions.HasUserLikedAction;
@@ -20,6 +21,7 @@ import com.tmxlr.libs.facebook.actions.PostCommentAction;
 import com.tmxlr.libs.facebook.actions.listeners.GetAccessTokenListener;
 import com.tmxlr.libs.facebook.actions.listeners.GetCommentListener;
 import com.tmxlr.libs.facebook.actions.listeners.GetCommentsListener;
+import com.tmxlr.libs.facebook.actions.listeners.GetObjectListener;
 import com.tmxlr.libs.facebook.actions.listeners.GetPostsListener;
 import com.tmxlr.libs.facebook.actions.listeners.GetProfileListener;
 import com.tmxlr.libs.facebook.actions.listeners.OnDislikeListener;
@@ -30,6 +32,7 @@ import com.tmxlr.libs.facebook.actions.listeners.OnLogoutListener;
 import com.tmxlr.libs.facebook.actions.listeners.PostCommentListener;
 import com.tmxlr.libs.facebook.entities.Entity;
 import com.tmxlr.libs.facebook.entities.FbError;
+import com.tmxlr.libs.facebook.entities.Post;
 import com.tmxlr.libs.facebook.network.FbRequest;
 import com.tmxlr.libs.facebook.network.FbRequestParams;
 
@@ -182,6 +185,16 @@ public class FbClient {
 		HasUserLikedAction action = new HasUserLikedAction(userId, entity, getSessionManager(), listener);
 		performAction(action);
 	};
+	
+	public void getObject(final Post post, final GetObjectListener listener) {
+		GetObjectAction action = new GetObjectAction(post, null, sessionManager, listener);
+		performAction(action);
+	}
+	
+	public void getObject(final Post post, final FbRequestParams params, final GetObjectListener listener) {
+		GetObjectAction action = new GetObjectAction(post, params, sessionManager, listener);
+		performAction(action);
+	}
 
 	public Gson getGson() {
 		return gson;
